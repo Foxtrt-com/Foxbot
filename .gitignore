@@ -1,6 +1,7 @@
 # CUSTOM ignored files
-/data/restricted/token.txt
+data/restricted/token.txt
 .idea/
+/main/lavalink/logs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

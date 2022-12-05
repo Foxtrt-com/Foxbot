@@ -18,8 +18,11 @@ Python 3.10
 
 ### Run with python
 ```
-python3 .\bot.py
+python3 .\start.py
 ```
+
+## Support
+![Discord Banner 2](https://discordapp.com/api/guilds/1049238673130012723/widget.png?style=banner2)
 
 ## Repo Owners
 |<img height="auto" width="100" src="https://avatars.githubusercontent.com/u/74470736" />|
