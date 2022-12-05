@@ -1,3 +1,0 @@
-#Pronouns
-#Level
-#Leaderboard
