@@ -37,16 +37,8 @@ class Music(Cog):
         if not player.queue.is_empty:
             next_track = player.queue.get()
             await player.play(next_track)
-            await self.bot.change_presence(activity=Activity(name=next_track.title,
-                                                             type=getattr(ActivityType,
-                                                                          "listening",
-                                                                          ActivityType.playing)))
         else:
             await self.disconnect()
-            await self.bot.change_presence(activity=Activity(name="your !commands",
-                                                             type=getattr(ActivityType,
-                                                                          "listening",
-                                                                          ActivityType.playing)))
 
     @command(enabled=False,
              help="Usage: `!connect` causes the music bot to join your voice channel",
@@ -71,10 +63,6 @@ class Music(Cog):
         vc = ctx.voice_client
         if vc:
             await vc.disconnect()
-            await self.bot.change_presence(activity=Activity(name="your !commands",
-                                                             type=getattr(ActivityType,
-                                                                          "listening",
-                                                                          ActivityType.playing)))
         else:
             await ctx.send("The bot is not connected to a voice channel.")
 
@@ -104,11 +92,6 @@ class Music(Cog):
                 url=search.uri,
                 description=f"Playing {search.title} in {vc.channel}"
             ))
-
-            await self.bot.change_presence(activity=Activity(name=search.title,
-                                                             type=getattr(ActivityType,
-                                                                          "listening",
-                                                                          ActivityType.playing)))
 
     @command(help="Usage: `!skip` skips the current song",
              brief="`!skip`",

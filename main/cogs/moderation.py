@@ -1,6 +1,6 @@
 from discord.ext.commands import *
 from ..helpers.message_eq_user import MessageEqUser
-
+from ..helpers import appwrite as app
 
 class Moderation(Cog):
     def __init__(self, bot):
@@ -37,6 +37,14 @@ class Moderation(Cog):
              aliases=["Ping"])
     async def ping(self, ctx):
         await ctx.message.reply(f"Pong! ({round(self.bot.latency * 1000)}ms)")
+
+    @has_permissions(administrator=True)
+    @command(help="Usage: `!welcome <message>` sets the bots welcome message, `{user}` and `{server}` will be "
+                  "replaced with @mentions",
+             brief="`!welcome <message>`",
+             aliases=["Welcome"])
+    async def welcome(self, ctx, *, message):
+        app.set_welcome_msg(ctx.guild.id, message)
 
 
 async def setup(bot):

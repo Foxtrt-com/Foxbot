@@ -1,5 +1,5 @@
 # CUSTOM ignored files
-data/restricted/token.txt
+/data/restricted/
 .idea/
 /main/lavalink/logs/
 
