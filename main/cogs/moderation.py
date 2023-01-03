@@ -45,6 +45,7 @@ class Moderation(Cog):
              aliases=["Welcome"])
     async def welcome(self, ctx, *, message):
         app.set_welcome_msg(ctx.guild.id, message)
+        # TODO: send a message back to confirm that new message has been set
 
 
 async def setup(bot):

@@ -14,12 +14,21 @@ class Levels(Cog):
     @command(help="Usage: `!level [user]` returns a users level",
              brief="`!level [user]`",
              aliases=["Level", "lvl"])
-    async def level(self, ctx, user: discord.User = None):
-        if user is None:
+    async def level(self, ctx, duser: discord.User = None):
+        if duser is None:
             user = app.get_user_lvl(ctx.guild.id, ctx.message.author.id)
         else:
-            user = app.get_user_lvl(ctx.guild.id, user.id)
-        await ctx.message.reply(f"{ctx.guild.get_member(int(user['$id']))}: Lvl {user['lvl']} ({user['exp']}exp)")
+            user = app.get_user_lvl(ctx.guild.id, duser.id)
+
+        embed = discord.Embed(title=f"{ctx.guild.get_member(int(user['$id']))}",
+                              description=f"Level {user['lvl']}",
+                              color=0xf67f00
+                              )
+
+        embed.set_footer(text=f"{user['exp']}exp")
+        embed.set_thumbnail(url=duser.avatar.url)
+
+        await ctx.message.reply(embed)
 
     @command(help="Usage: `!leaderboard` returns a the servers top 5 users",
              brief="`!leaderboard`",
@@ -32,7 +41,7 @@ class Levels(Cog):
         for user in result:
             msg += f"\n {i}. {ctx.guild.get_member(int(user['$id']))}: Lvl {user['lvl']} ({user['exp']}exp)"
             i += 1
-
+        # TODO: Make this an embed
         await ctx.send(msg)
 
 
