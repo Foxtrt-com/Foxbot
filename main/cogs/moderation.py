@@ -46,6 +46,8 @@ class Moderation(Cog):
     async def welcome(self, ctx, *, message):
         app.set_welcome_msg(ctx.guild.id, message)
 
+        await ctx.send("Welcome Message Saved!")
+
 
 async def setup(bot):
     await bot.add_cog(Moderation(bot))

@@ -1,4 +1,6 @@
+import datetime
 import random
+import discord
 from discord.ext.commands import *
 from ..helpers import appwrite as app
 
@@ -31,7 +33,17 @@ class Events(Cog):
         message = app.get_welcome_msg(member.guild.id)
         message = message.replace("{user}", member.mention)
         message = message.replace("{server}", member.guild.name)
-        await member.guild.system_channel.send(message)
+
+        embed = discord.Embed(title=message,
+                              description="Be sure to read the #Rules and have fun! <3",
+                              timestamp=datetime.datetime.now(),
+                              color=0xf67f00
+                              )
+
+        embed.set_footer(text="Joined")
+        embed.set_thumbnail(url=member.avatar_url)
+
+        await member.guild.system_channel.send(embed)
 
     @Cog.listener()
     async def on_member_remove(self, member):
@@ -44,8 +56,18 @@ class Events(Cog):
 
         has_lvl_up, lvl = app.add_exp(message.guild.id, message.author.id, message.created_at, random.randint(15, 25))
 
+        user = app.get_user_lvl(message.guild.id, message.author.id)
+
         if has_lvl_up:
-            await message.channel.send(f"LEVEL UP! {message.author.mention} is now lvl{lvl}!")
+            embed = discord.Embed(title="LEVEL UP!",
+                                  description=f"{message.author.mention} is now lvl{lvl}!",
+                                  color=0xf67f00
+                                  )
+
+            embed.set_footer(text=f"{user['exp']}exp")
+            embed.set_thumbnail(url=message.author.avatar_url)
+
+            await message.channel.send(embed)
 
 
 async def setup(bot):
