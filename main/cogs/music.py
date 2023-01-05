@@ -79,8 +79,6 @@ class Music(Cog):
 
             vc.queue.put(item=search)
 
-            # TODO: Make this a nicer embed, maybe get the image of the thumbnail or something?
-
             await ctx.send(embed=discord.Embed(
                 title=search.title,
                 url=search.uri,

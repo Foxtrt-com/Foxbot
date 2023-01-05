@@ -35,14 +35,19 @@ class Levels(Cog):
              aliases=["Leaderboard"])
     async def leaderboard(self, ctx):
         result = app.get_top_5(ctx.guild.id)
-        msg = f"**Leaderboard:**"
+
+        embed = discord.Embed(title="Leaderboard",
+                              color=0xf67f00
+                              )
 
         i = 1
         for user in result:
-            msg += f"\n {i}. {ctx.guild.get_member(int(user['$id']))}: Lvl {user['lvl']} ({user['exp']}exp)"
+            embed.add_field(name="\u200B", value=f"{i}. {ctx.guild.get_member(int(user['$id']))}", inline=True)
+            embed.add_field(name="\u200B", value=f"LVL {user['lvl']} ({user['exp']}exp)", inline=True)
+            embed.add_field(name="\u200B", value="\u200B", inline=False)
             i += 1
-        # TODO: Make this an embed
-        await ctx.send(msg)
+
+        await ctx.send(embed)
 
 
 async def setup(bot):
