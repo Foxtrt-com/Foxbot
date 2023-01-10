@@ -4,41 +4,13 @@
 <img align="right" height="25px" src="https://img.shields.io/badge/Version-v1.4.0-blue?style=flat-square"/>
 <br />
 
-# Foxbot
+<img width="40%" src="https://user-images.githubusercontent.com/74470736/210966448-e13881e2-6b57-4cb3-9d01-0e0c1b00a965.svg" />
 
 Yet another python based discord bot
 
-## Requirements
+## Docs
 
- - Python 3.10
- - Java 19
- - [Lavalink.jar](https://github.com/freyacodes/Lavalink)
- - [requirements.txt](https://github.com/Foxtrt-com/Foxbot/blob/master/requirements.txt)
-
-
-## Usage
-### Create appwrite and bot token files in data/restricted/
-appwrite.txt:
-```
-https://api.endpoint.com/v1
-AppID
-APIKey
-```
-
-token.txt:
-```
-DiscordAppBotToken
-```
-
-### Run lavalink with Java
-```shell
-cd .\main\lavalink\
-java -jar .\Lavalink.jar
-```
-### Run bot with Python
-```shell
-python3 .\start.py
-```
+[Here](https://github.com/Foxtrt-com/Foxbot/wiki/1.-Home)
 
 ## Support
 ![Discord Banner 2](https://discordapp.com/api/guilds/1049238673130012723/widget.png?style=banner2)
