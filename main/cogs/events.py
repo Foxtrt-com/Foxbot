@@ -43,7 +43,7 @@ class Events(Cog):
         embed.set_footer(text="Joined")
         embed.set_thumbnail(url=member.avatar_url)
 
-        await member.guild.system_channel.send(embed)
+        await member.guild.system_channel.send(embed=embed)
 
     @Cog.listener()
     async def on_member_remove(self, member):
@@ -67,7 +67,7 @@ class Events(Cog):
             embed.set_footer(text=f"{user['exp']}exp")
             embed.set_thumbnail(url=message.author.avatar_url)
 
-            await message.channel.send(embed)
+            await message.channel.send(embed=embed)
 
 
 async def setup(bot):

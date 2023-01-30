@@ -47,7 +47,7 @@ class Levels(Cog):
             embed.add_field(name="\u200B", value="\u200B", inline=False)
             i += 1
 
-        await ctx.send(embed)
+        await ctx.send(embed=embed)
 
 
 async def setup(bot):
