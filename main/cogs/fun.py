@@ -1,8 +1,6 @@
 import random
-
-import discord
 from discord.ext.commands import *
-from discord import app_commands
+
 
 class Fun(Cog):
     def __init__(self, bot):
@@ -55,9 +53,9 @@ class Fun(Cog):
                 (user_choice == ":page_with_curl:" and cpu_choice == ":rock:") \
                 or \
                 (user_choice == ":scissors:" and cpu_choice == ":page_with_curl:"):
-            result = f"** {ctx.message.author} WINS! **"
+            result = f"** {ctx.message.author.display_name} WINS! **"
 
-        await ctx.message.reply(f"{ctx.message.author}: {user_choice} **vs** {cpu_choice} :CPU\n\n"
+        await ctx.message.reply(f"{ctx.message.author.display_name}: {user_choice} **vs** {cpu_choice} :CPU\n\n"
                                 f"{result}")
 
 
