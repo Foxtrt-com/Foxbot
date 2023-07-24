@@ -1,5 +1,4 @@
 import discord
-from discord import Activity, ActivityType
 from discord.ext.commands import *
 import wavelink
 
@@ -30,7 +29,6 @@ class Music(Cog):
     @Cog.listener()
     async def on_wavelink_node_ready(self, node):
         print(f"Node {node.identifier} is ready")
-
 
     @Cog.listener()
     async def on_wavelink_track_end(self, player, track, reason):

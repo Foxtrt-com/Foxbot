@@ -1,6 +1,7 @@
 from discord.ext.commands import *
 from ..helpers.message_eq_user import MessageEqUser
-from ..helpers import appwrite as app
+from ..helpers import database as db
+
 
 class Moderation(Cog):
     def __init__(self, bot):
@@ -21,15 +22,15 @@ class Moderation(Cog):
 
         if user is None:
             for _ in range(q):
-                await channel.purge(limit=100, reason=f"{ctx.message.author} ran !clear")
+                await channel.purge(limit=100, reason=f"{ctx.message.author.display_name} ran !clear")
 
-            await channel.purge(limit=r, reason=f"{ctx.message.author} ran !clear")
+            await channel.purge(limit=r, reason=f"{ctx.message.author.display_name} ran !clear")
         else:
             meu = MessageEqUser(user)
             for _ in range(q):
-                await channel.purge(limit=100, check=meu.check, reason=f"{ctx.message.author} ran !clear")
+                await channel.purge(limit=100, check=meu.check, reason=f"{ctx.message.author.display_name} ran !clear")
 
-            await channel.purge(limit=r, check=meu.check, reason=f"{ctx.message.author} ran !clear")
+            await channel.purge(limit=r, check=meu.check, reason=f"{ctx.message.author.display_name} ran !clear")
 
     @has_permissions(administrator=True)
     @command(help="Usage: `!ping` gets the bot latency",
@@ -44,7 +45,7 @@ class Moderation(Cog):
              brief="`!welcome <message>`",
              aliases=["Welcome"])
     async def welcome(self, ctx, *, message):
-        app.set_welcome_msg(ctx.guild.id, message)
+        db.set_welcome_msg(ctx.guild.id, message)
 
         await ctx.send("Welcome Message Saved!")
 
